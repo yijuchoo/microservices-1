@@ -1,1 +1,12 @@
 /.metadata/
+# Ignore Eclipse project files
+.settings/
+.classpath
+.project
+
+# Ignore Maven and Java build directories
+target/
+*.class
+
+# Ignore environment files
+*.env
