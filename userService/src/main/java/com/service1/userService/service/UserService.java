@@ -10,6 +10,8 @@ import com.service1.userService.beans.Contacts;
 import com.service1.userService.beans.User;
 import com.service1.userService.repo.UserRepo;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 @Service
 public class UserService {
 
@@ -19,6 +21,7 @@ public class UserService {
 	@Autowired
 	RestTemplate restTemplate;
 
+	@CircuitBreaker(name = "userService", fallbackMethod = "getUserByIdFallBack")
 	public User getUserById(Integer userId) {
 		User user = repo.findById(userId).get();
 
@@ -31,10 +34,9 @@ public class UserService {
 		return user;
 	}
 
-//	public User getUserByIdFallBack(Integer userId, Throwable t) {
-//		System.out.println("Our services are currently unavailable. Please try later :(");
-//
-//		return new User();
-//	}
+	public User getUserByIdFallBack(Integer userId, Throwable t) {
+		System.out.println("Our services are currently unavailable. Please try later :(");
+		return new User();
+	}
 
 }
