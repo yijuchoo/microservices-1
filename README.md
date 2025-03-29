@@ -2,7 +2,7 @@
 (Learnings from Aimerz.ai)
 
 ## Overview
-This project demonstrates a microservices-based architecture using Spring Boot, Spring Cloud, and Netflix Eureka. The system consists of three main services:
+This project demonstrates a microservices-based architecture using Spring Boot, Spring Cloud, and Netflix Eureka. The system consists of four main services:
 
 1. **Eureka Server** - Service registry for service discovery.
 2. **API Gateway** - Gateway for routing requests to appropriate services.
@@ -12,6 +12,8 @@ This project demonstrates a microservices-based architecture using Spring Boot, 
 ## Technologies Used
 - **Spring Boot**
 - **Spring Cloud Netflix Eureka**
+- **Spring Cloud OpenFeign** (for declarative REST client)
+- **Spring Cloud Circuit Breaker Resilience4j** (for fault tolerance)
 - **Spring Data JPA**
 - **Spring Web**
 - **RestTemplate for inter-service communication**
@@ -40,6 +42,22 @@ This project demonstrates a microservices-based architecture using Spring Boot, 
 ### 4. **Contact Service**
 - Stores user contact details.
 - Exposes REST API to retrieve contact details.
+
+
+### 4. **Contact Service**
+- Stores user contact details.
+- Exposes REST API to retrieve contact details.
+
+## Fault Tolerance & Circuit Breaker
+- Uses **Resilience4j Circuit Breaker** to provide fault tolerance in case of service failures.
+- Helps to prevent cascading failures by handling timeouts and failures gracefully.
+- Configured to fallback in case of errors to ensure system resilience.
+
+
+## Feign Client
+- **Spring Cloud OpenFeign** is used for declarative REST client communication.
+- Replaces the need for **RestTemplate** in many scenarios, simplifying inter-service communication.
+- Enables automatic load balancing when integrated with Eureka.
 
 
 ### Running the Microservices
