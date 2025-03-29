@@ -19,13 +19,17 @@ public class UserService {
 	UserRepo repo;
 
 	@Autowired
+	ContactsFeignClient feignClient; //replace RestTemplate
+
+	@Autowired
 	RestTemplate restTemplate;
 
 	@CircuitBreaker(name = "userService", fallbackMethod = "getUserByIdFallBack")
 	public User getUserById(Integer userId) {
 		User user = repo.findById(userId).get();
 
-		List<Contacts> contacts = restTemplate.getForObject("http://contacts-ms/contacts/" + userId, List.class);
+		// List<Contacts> contacts = restTemplate.getForObject("http://contacts-ms/contacts/" + userId, List.class);
+		List<Contacts> contacts = feignClient.getSpecificContact(userId);
 
 		System.out.println(contacts);
 
