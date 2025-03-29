@@ -48,13 +48,13 @@ This project demonstrates a microservices-based architecture using Spring Boot, 
 - Stores user contact details.
 - Exposes REST API to retrieve contact details.
 
-## Fault Tolerance & Circuit Breaker
+### Fault Tolerance & Circuit Breaker
 - Uses **Resilience4j Circuit Breaker** to provide fault tolerance in case of service failures.
 - Helps to prevent cascading failures by handling timeouts and failures gracefully.
 - Configured to fallback in case of errors to ensure system resilience.
 
 
-## Feign Client
+### Feign Client
 - **Spring Cloud OpenFeign** is used for declarative REST client communication.
 - Replaces the need for **RestTemplate** in many scenarios, simplifying inter-service communication.
 - Enables automatic load balancing when integrated with Eureka.
